@@ -1,11 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import { store } from "./actions/store";
-import { Provider } from "react-redux";
-import DCustomers from './components/DCustomers';
-import { Container, createTheme, ThemeProvider } from "@mui/material";
-
-const defaultTheme = createTheme();
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TestPage from "./pages/TestPage";
+import HomePage from "./pages/HomePage";
+// import Company from "./pages/Company";
+// import CrossAndUpSale from "./pages/CrossAndUpSale";
+// import Segmentation from "./pages/Segmentation";
+// import NextBestOffer from "./pages/NextBestOffer";
+// import Login from "./pages/Login";
+// import SignUp from "./pages/SignUp";
+// import ResetPassword from "./pages/ResetPassword";
+// import Projects from "./pages/Projects";
+// import NewProject from "./pages/NewProject";
+import Report from "./pages/Report";
+import Dashboard from "./pages/Dashboard";
+// import Account from "./pages/Account";
+// import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -26,13 +35,29 @@ function App() {
     //   </header>
     // </div>
 
-    <ThemeProvider theme={defaultTheme}>
-      <Provider store={store}>
-        <Container maxWidth="lg">
-          <DCustomers />
-        </Container>
-      </Provider>
-    </ThemeProvider>
+    <Router>
+      <Routes>
+        {/* Test Page */}
+        {/* <Route exact path="/" element={<TestPage />} /> */}
+
+        <Route exact path="/" element={<HomePage />} />
+        {/* <Route exact path="/company" element={<Company />} />
+        <Route exact path="/cross-and-up-sale" element={<CrossAndUpSale />} />
+        <Route exact path="/segmentation" element={<Company />} />
+        <Route exact path="/next-best-offer" element={<NextBestOffer />} /> */}
+
+        {/* <Route exact path="/login" element={<Company />} />
+        <Route exact path="/sign-up" element={<Sinup />} />
+        <Route exact path="/reset-password" element={<ResetPassword />} /> */}
+        
+        {/* <Route exact path="/projects" element={<Projects />} /> */}
+        {/* <Route exact path="/projects/new" element={<NewProject />} /> */}
+        <Route exact path="/report" element={<Report />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        {/* <Route exact path="/account" element={<Company />} /> */}
+        {/* <Route exact path="/admin" element={<Admin />} /> */}
+      </Routes>
+    </Router>
   );
 }
 
