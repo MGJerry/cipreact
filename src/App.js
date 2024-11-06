@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TestPage from "./pages/TestPage";
+// import TestPage from "./pages/TestPage";
 import HomePage from "./pages/HomePage";
-// import Company from "./pages/Company";
-// import CrossAndUpSale from "./pages/CrossAndUpSale";
-// import Segmentation from "./pages/Segmentation";
-// import NextBestOffer from "./pages/NextBestOffer";
+import Company from "./pages/Company";
+import CrossAndUpSale from "./pages/CrossAndUpSale";
+import Segmentation from "./pages/Segmentation";
+import NextBestOffer from "./pages/NextBestOffer";
+import Contact from "./pages/Contact";
 // import Login from "./pages/Login";
 // import SignUp from "./pages/SignUp";
 // import ResetPassword from "./pages/ResetPassword";
+// import Projects from "./pages/Projects";
 // import Projects from "./pages/Projects";
 // import NewProject from "./pages/NewProject";
 import Report from "./pages/Report";
@@ -41,10 +43,11 @@ function App() {
         {/* <Route exact path="/" element={<TestPage />} /> */}
 
         <Route exact path="/" element={<HomePage />} />
-        {/* <Route exact path="/company" element={<Company />} />
+        <Route exact path="/company" element={<Company />} />
         <Route exact path="/cross-and-up-sale" element={<CrossAndUpSale />} />
-        <Route exact path="/segmentation" element={<Company />} />
-        <Route exact path="/next-best-offer" element={<NextBestOffer />} /> */}
+        <Route exact path="/segmentation" element={<Segmentation />} />
+        <Route exact path="/next-best-offer" element={<NextBestOffer />} />
+        <Route exact path="/contact" element={<Contact />} />
 
         {/* <Route exact path="/login" element={<Company />} />
         <Route exact path="/sign-up" element={<Sinup />} />
