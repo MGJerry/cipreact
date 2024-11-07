@@ -7,17 +7,17 @@ import CrossAndUpSale from "./pages/CrossAndUpSale";
 import Segmentation from "./pages/Segmentation";
 import NextBestOffer from "./pages/NextBestOffer";
 import Contact from "./pages/Contact";
+// import Blog from "./pages/Blog";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ResetPassword from "./pages/ResetPassword";
 import NewPassword from "./pages/NewPassword";
-// import Projects from "./pages/Projects";
-// import Projects from "./pages/Projects";
+import Projects from "./pages/Projects";
 // import NewProject from "./pages/NewProject";
 import Report from "./pages/Report";
 import Dashboard from "./pages/Dashboard";
-// import Account from "./pages/Account";
-// import Admin from "./pages/Admin";
+import Account from "./pages/Account";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -50,17 +50,19 @@ function App() {
         <Route exact path="/next-best-offer" element={<NextBestOffer />} />
         <Route exact path="/contact" element={<Contact />} />
 
+        {/* <Route exact path="/blog" element={<Blog />} /> */}
+
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/sign-up" element={<SignUp />} />
         <Route exact path="/reset-password" element={<ResetPassword />} />
         <Route exact path="/reset-password/new" element={<NewPassword />} />
         
-        {/* <Route exact path="/projects" element={<Projects />} /> */}
+        <Route exact path="/projects" element={<Projects />} />
         {/* <Route exact path="/projects/new" element={<NewProject />} /> */}
         <Route exact path="/report" element={<Report />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
-        {/* <Route exact path="/account" element={<Company />} /> */}
-        {/* <Route exact path="/admin" element={<Admin />} /> */}
+        <Route exact path="/account" element={<Account />} />
+        <Route exact path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
