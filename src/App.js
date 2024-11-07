@@ -7,9 +7,10 @@ import CrossAndUpSale from "./pages/CrossAndUpSale";
 import Segmentation from "./pages/Segmentation";
 import NextBestOffer from "./pages/NextBestOffer";
 import Contact from "./pages/Contact";
-// import Login from "./pages/Login";
-// import SignUp from "./pages/SignUp";
-// import ResetPassword from "./pages/ResetPassword";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import ResetPassword from "./pages/ResetPassword";
+import NewPassword from "./pages/NewPassword";
 // import Projects from "./pages/Projects";
 // import Projects from "./pages/Projects";
 // import NewProject from "./pages/NewProject";
@@ -49,9 +50,10 @@ function App() {
         <Route exact path="/next-best-offer" element={<NextBestOffer />} />
         <Route exact path="/contact" element={<Contact />} />
 
-        {/* <Route exact path="/login" element={<Company />} />
-        <Route exact path="/sign-up" element={<Sinup />} />
-        <Route exact path="/reset-password" element={<ResetPassword />} /> */}
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/sign-up" element={<SignUp />} />
+        <Route exact path="/reset-password" element={<ResetPassword />} />
+        <Route exact path="/reset-password/new" element={<NewPassword />} />
         
         {/* <Route exact path="/projects" element={<Projects />} /> */}
         {/* <Route exact path="/projects/new" element={<NewProject />} /> */}
