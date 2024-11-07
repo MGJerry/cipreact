@@ -13,7 +13,7 @@ import SignUp from "./pages/SignUp";
 import ResetPassword from "./pages/ResetPassword";
 import NewPassword from "./pages/NewPassword";
 import Projects from "./pages/Projects";
-// import NewProject from "./pages/NewProject";
+import NewProject from "./pages/NewProject";
 import Report from "./pages/Report";
 import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
@@ -58,7 +58,7 @@ function App() {
         <Route exact path="/reset-password/new" element={<NewPassword />} />
         
         <Route exact path="/projects" element={<Projects />} />
-        {/* <Route exact path="/projects/new" element={<NewProject />} /> */}
+        <Route exact path="/projects/new" element={<NewProject />} />
         <Route exact path="/report" element={<Report />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/account" element={<Account />} />

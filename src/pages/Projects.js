@@ -37,6 +37,11 @@ const StyledButton = styled(Button)({
     marginTop: '20px',
 });
 
+const NewProjectButton = styled(StyledButton)({
+    alignSelf: 'flex-start', // Aligns the button to the left
+    marginBottom: '20px',
+});
+
 const StyledTableCell = styled(TableCell)({
     textAlign: 'center',
 });
@@ -52,7 +57,7 @@ const projectList = [
     { id: 86052, name: 'Lumina Labs', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025' },
 ];
 
-function Projects() {
+function ProjectsPage() {
     const [visibleProjects, setVisibleProjects] = useState(10);
     const navigate = useNavigate();
 
@@ -68,6 +73,9 @@ function Projects() {
         <>
             <CustomerHeader />
             <PageContainer>
+                <NewProjectButton onClick={() => navigate('/projects/new')}>
+                    New Project
+                </NewProjectButton>
                 <StyledTableContainer>
                     <Table>
                         <TableHead>
@@ -102,4 +110,4 @@ function Projects() {
     );
 }
 
-export default Projects;
+export default ProjectsPage;
