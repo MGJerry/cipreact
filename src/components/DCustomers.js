@@ -79,6 +79,7 @@ const DCustomers = ({ ...props }) => {
                                             <ButtonGroup variant="text">
                                                 <Button onClick={() => {setCurrentId(record.id)}}><EditIcon color="primary" /></Button>
                                                 <Button onClick={() => onDelete(record.id)}><DeleteIcon color="error" /></Button>
+                                                {/* <Button onClick={() => props.fetchCustomerById(record.id)}><EditIcon color="secondary" /></Button> */}
                                             </ButtonGroup>
                                         </TableCell>
                                     </TableRow>
@@ -98,6 +99,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionToProps = {
     fetchAllDCustomers: actions.fetchAll,
+    // fetchCustomerById: actions.fetchById,
     deleteDCustomer: actions.Delete
 };
 

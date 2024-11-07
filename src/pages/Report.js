@@ -10,7 +10,7 @@ const Report = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Provider store={store}>
-      <CustomerHeader />
+        <CustomerHeader />
         <Container maxWidth="lg">
           <DCustomers />
         </Container>

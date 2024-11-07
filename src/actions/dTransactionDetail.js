@@ -1,4 +1,4 @@
-// src/actions/dCustomer.js
+// src/actions/dTransactionDetail.js
 import api from "./api";
 
 export const ACTION_TYPES = {
@@ -9,23 +9,9 @@ export const ACTION_TYPES = {
     FETCH_BY_ID: 'FETCH_BY_ID',
 }
 
-const formatData = (data) => {
-    const { dateOfBirth, ...otherData } = data;
-
-    // Parse dateOfBirth if it exists
-    const parsedDateOfBirth = dateOfBirth ? (
-        dateOfBirth.getFullYear() + "-" + String(dateOfBirth.getMonth() + 1).padStart(2, '0') + "-" + String(dateOfBirth.getDate()).padStart(2, '0')
-    ) : dateOfBirth;
-
-    return {
-        ...otherData,
-        dateOfBirth: parsedDateOfBirth
-    };
-};
-
 export const fetchAll = () => dispatch => {
     //get api req.
-    api.dCustomer().fetchAll()
+    api.dTransactionDetail().fetchAll()
     .then(response => {
         // console.log(response.data)
         //dispatch req.
@@ -39,7 +25,7 @@ export const fetchAll = () => dispatch => {
 
 export const fetchById = (id) => dispatch => {
     //get api req.
-    api.dCustomer().fetchById(id)
+    api.dTransactionDetail().fetchById(id)
     .then(response => {
         // console.log(response.data)
         //dispatch req.
@@ -52,10 +38,8 @@ export const fetchById = (id) => dispatch => {
 }
 
 export const create = (data, onSuccess) => dispatch => {
-    //prep data
-    data = formatData(data)
     //get api req.
-    api.dCustomer().create(data)
+    api.dTransactionDetail().create(data)
     .then(response => {
         //dispatch req.
         dispatch({
@@ -68,10 +52,8 @@ export const create = (data, onSuccess) => dispatch => {
 }
 
 export const update = (data, onSuccess) => dispatch => {
-    //prep data
-    data = formatData(data)
     //get api req.
-    api.dCustomer().update(data)
+    api.dTransactionDetail().update(data)
     .then(response => {
         //dispatch req.
         dispatch({
@@ -85,7 +67,7 @@ export const update = (data, onSuccess) => dispatch => {
 
 export const Delete = (id, onSuccess) => dispatch => {
     //get api req.
-    api.dCustomer().delete(id)
+    api.dTransactionDetail().delete(id)
     .then(response => {
         //dispatch req.
         dispatch({
