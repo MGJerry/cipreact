@@ -1,3 +1,4 @@
+// src/components/DCustomers.js
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/dCustomer";

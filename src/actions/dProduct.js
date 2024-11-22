@@ -2,11 +2,11 @@
 import api from "./api";
 
 export const ACTION_TYPES = {
-    CREATE: 'CREATE',
-    UPDATE: 'UPDATE',
-    DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH_ALL',
-    FETCH_BY_ID: 'FETCH_BY_ID',
+    CREATE: 'PRODUCT_CREATE',
+    UPDATE: 'PRODUCT_UPDATE',
+    DELETE: 'PRODUCT_DELETE',
+    FETCH_ALL: 'PRODUCT_FETCH_ALL',
+    FETCH_BY_ID: 'PRODUCT_FETCH_BY_ID',
 }
 
 export const fetchAll = () => dispatch => {
@@ -30,7 +30,7 @@ export const fetchById = (id) => dispatch => {
         // console.log(response.data)
         //dispatch req.
         dispatch({
-            type: ACTION_TYPES.FETCH_ALL,
+            type: ACTION_TYPES.FETCH_BY_ID,
             payload: response.data
         })
     })

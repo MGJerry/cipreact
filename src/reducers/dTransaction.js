@@ -1,9 +1,9 @@
 import { ACTION_TYPES } from "../actions/dTransaction";
-const initialState = {
+const initialTransactionState = {
     list: []
 }
 
-export const dTransaction = (state=initialState, action) => {
+export const dTransaction = (state=initialTransactionState, action) => {
     switch (action.type) {
         case ACTION_TYPES.FETCH_ALL:
             return {

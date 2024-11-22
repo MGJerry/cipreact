@@ -110,8 +110,8 @@ function NextBestOfferBenefitsSection() {
             <SectionTitle>Benefits of the Service</SectionTitle>
             <ContactButton variant="contained">Contact Us</ContactButton>
 
-            <CardContainer container spacing={3}>
-                <Grid2 item xs={12} sm={6} md={4} display="flex" justifyContent="center">
+            <CardContainer container spacing={6}>
+                <Grid2 size={{ xs: 12, sm: 6, md: 4 }} display="flex" justifyContent="center">
                     <FeatureCard>
                         <IconSection>
                             <Icon src={personalizationIcon} alt="Personalization Icon" />
@@ -125,7 +125,7 @@ function NextBestOfferBenefitsSection() {
                     </FeatureCard>
                 </Grid2>
 
-                <Grid2 item xs={12} sm={6} md={4} display="flex" justifyContent="center">
+                <Grid2 size={{ xs: 12, sm: 6, md: 4 }} display="flex" justifyContent="center">
                     <FeatureCard>
                         <IconSection>
                             <Icon src={proactivityIcon} alt="Proactivity Icon" />
@@ -139,7 +139,7 @@ function NextBestOfferBenefitsSection() {
                     </FeatureCard>
                 </Grid2>
 
-                <Grid2 item xs={12} sm={6} md={4} display="flex" justifyContent="center">
+                <Grid2 size={{ xs: 12, sm: 6, md: 4 }} display="flex" justifyContent="center">
                     <FeatureCard>
                         <IconSection>
                             <Icon src={flexibilityIcon} alt="Flexibility Icon" />

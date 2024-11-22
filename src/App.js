@@ -19,6 +19,9 @@ import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
 import Admin from "./pages/Admin";
 
+//Test Api Thingy
+import TestApiInteract from "./pages/TestApiInteract";
+
 function App() {
   return (
     // <div className="App">
@@ -60,6 +63,7 @@ function App() {
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/projects/new" element={<NewProject />} />
         <Route exact path="/report" element={<Report />} />
+        <Route exact path="/report/test" element={<TestApiInteract />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/account" element={<Account />} />
         <Route exact path="/admin" element={<Admin />} />

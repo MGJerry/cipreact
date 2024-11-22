@@ -1,20 +1,22 @@
 import { store } from "../actions/store";
 import { Provider } from "react-redux";
+import DCustomers from '../components/DCustomers';
 import { Container, createTheme, ThemeProvider } from "@mui/material";
 import CustomerHeader from "../components/CustomerHeader";
-import DashboardCharts from '../components/DashboardCharts';
 
 const defaultTheme = createTheme();
 
-const Dashboard = () => {
+const TestApiInteract = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Provider store={store}>
         <CustomerHeader />
-        <DashboardCharts />
+        <Container maxWidth="lg">
+          <DCustomers />
+        </Container>
       </Provider>
     </ThemeProvider>
   );
 }
 
-export default Dashboard;
+export default TestApiInteract;

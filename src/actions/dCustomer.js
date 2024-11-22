@@ -2,11 +2,11 @@
 import api from "./api";
 
 export const ACTION_TYPES = {
-    CREATE: 'CREATE',
-    UPDATE: 'UPDATE',
-    DELETE: 'DELETE',
-    FETCH_ALL: 'FETCH_ALL',
-    FETCH_BY_ID: 'FETCH_BY_ID',
+    CREATE: 'CUSTOMER_CREATE',
+    UPDATE: 'CUSTOMER_UPDATE',
+    DELETE: 'CUSTOMER_DELETE',
+    FETCH_ALL: 'CUSTOMER_FETCH_ALL',
+    FETCH_BY_ID: 'CUSTOMER_FETCH_BY_ID',
 }
 
 const formatData = (data) => {
@@ -44,7 +44,7 @@ export const fetchById = (id) => dispatch => {
         // console.log(response.data)
         //dispatch req.
         dispatch({
-            type: ACTION_TYPES.FETCH_ALL,
+            type: ACTION_TYPES.FETCH_BY_ID,
             payload: response.data
         })
     })

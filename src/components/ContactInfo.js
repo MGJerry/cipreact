@@ -99,92 +99,103 @@ function ContactInfo() {
     return (
         <ContactContainer>
             <Toaster />
-            <ContactInfoHeader>
-                <ContactTitle>Contact</ContactTitle>
-                <ContactTitle>Information</ContactTitle>
-                <img src={contactImage} alt="Contact" style={{ width: '250px', height: 'auto', marginTop: '20px' }} />
-            </ContactInfoHeader>
-
-            <ContactForm component="form" onSubmit={handleSubmit}>
-                <Grid2 container spacing={2}>
-                    <Grid2 size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="Contact name"
-                            variant="standard"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                        />
-                    </Grid2>
-                    <Grid2 size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="E-mail"
-                            variant="standard"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                    </Grid2>
-                    <Grid2 size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="Contact Phone"
-                            variant="standard"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                        />
-                    </Grid2>
-                    <Grid2 size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="Industry"
-                            variant="standard"
-                            name="industry"
-                            value={formData.industry}
-                            onChange={handleChange}
-                        />
-                    </Grid2>
-                    <Grid2 size={{ xs: 12 }}>
-                        <TextField
-                            fullWidth
-                            label="Content"
-                            variant="standard"
-                            name="content"
-                            value={formData.content}
-                            onChange={handleChange}
-                            multiline
-                            rows={4}
-                        />
-                    </Grid2>
+            <Grid2 container spacing={2}>    
+                <Grid2 size={{ xs: 12, md: 4 }}>
+                    <ContactInfoHeader>
+                        <ContactTitle>Contact</ContactTitle>
+                        <ContactTitle>Information</ContactTitle>
+                        <img src={contactImage} alt="Contact" style={{ width: '250px', height: 'auto', marginTop: '20px' }} />
+                    </ContactInfoHeader>
                 </Grid2>
-                
-                <ContactInfoSection display="flex" alignItems="center" gap="20px" marginTop="20px">
-                    <SubmitButton type="submit" variant="contained">Submit</SubmitButton>
+                <Grid2 size={{ xs: 12, md: 8 }}>
+                    <ContactForm component="form" onSubmit={handleSubmit}>
+                        <Grid2 container spacing={2}>
+                            <Grid2 size={{ xs: 12 }}>
+                                <TextField
+                                    fullWidth
+                                    label="Contact name"
+                                    variant="standard"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
+                            </Grid2>
+                            <Grid2 size={{ xs: 12 }}>
+                                <TextField
+                                    fullWidth
+                                    label="E-mail"
+                                    variant="standard"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </Grid2>
+                            <Grid2 size={{ xs: 12 }}>
+                                <TextField
+                                    fullWidth
+                                    label="Contact Phone"
+                                    variant="standard"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                />
+                            </Grid2>
+                            <Grid2 size={{ xs: 12 }}>
+                                <TextField
+                                    fullWidth
+                                    label="Industry"
+                                    variant="standard"
+                                    name="industry"
+                                    value={formData.industry}
+                                    onChange={handleChange}
+                                />
+                            </Grid2>
+                            <Grid2 size={{ xs: 12 }}>
+                                <TextField
+                                    fullWidth
+                                    label="Content"
+                                    variant="standard"
+                                    name="content"
+                                    value={formData.content}
+                                    onChange={handleChange}
+                                    multiline
+                                    rows={4}
+                                />
+                            </Grid2>
+                        </Grid2>
                     
-                    <Box display="flex" alignItems="center" gap="10px">
-                        <IconButton color="inherit" disableRipple>
-                            <Phone />
-                        </IconButton>
-                        <Box display="flex" flexDirection="column">
-                            <InfoLabel>PHONE</InfoLabel>
-                            <ContactInfoText>082 885 3801</ContactInfoText>
-                        </Box>
-                    </Box>
-
-                    <Box display="flex" alignItems="center" gap="10px">
-                        <IconButton color="inherit" disableRipple>
-                            <Email />
-                        </IconButton>
-                        <Box display="flex" flexDirection="column">
-                            <InfoLabel>E-MAIL</InfoLabel>
-                            <ContactInfoText>cipvietnam@gmail.com</ContactInfoText>
-                        </Box>
-                    </Box>
-                </ContactInfoSection>
-            </ContactForm>
+                        <ContactInfoSection display="flex" alignItems="center" gap="20px" marginTop="20px">
+                            <Grid2 container spacing={2}>
+                                <Grid2 size={{ xs: 12, md: 4 }}>
+                                    <SubmitButton type="submit" variant="contained">Submit</SubmitButton>
+                                </Grid2>
+                                <Grid2 size={{ xs: 12, md: 4 }}>
+                                    <Box display="flex" alignItems="center" gap="10px">
+                                        <IconButton color="inherit" disableRipple>
+                                            <Phone />
+                                        </IconButton>
+                                        <Box display="flex" flexDirection="column">
+                                            <InfoLabel>PHONE</InfoLabel>
+                                            <ContactInfoText>082 885 3801</ContactInfoText>
+                                        </Box>
+                                    </Box>
+                                </Grid2>
+                                <Grid2 size={{ xs: 12, md: 4 }}>
+                                    <Box display="flex" alignItems="center" gap="10px">
+                                        <IconButton color="inherit" disableRipple>
+                                            <Email />
+                                        </IconButton>
+                                        <Box display="flex" flexDirection="column">
+                                            <InfoLabel>E-MAIL</InfoLabel>
+                                            <ContactInfoText>cipvietnam@gmail.com</ContactInfoText>
+                                        </Box>
+                                    </Box>
+                                </Grid2>
+                            </Grid2>
+                        </ContactInfoSection>
+                    </ContactForm>
+                </Grid2>
+            </Grid2>
         </ContactContainer>
     );
 }

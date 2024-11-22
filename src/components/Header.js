@@ -1,9 +1,9 @@
-// src/components/Header.js
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, IconButton, Menu, MenuItem, Box, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../images/logo.png';
 
 // Custom styling for the AppBar and Buttons
@@ -18,9 +18,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
     fontWeight: '500',
     textTransform: 'none',
     fontSize: '16px',
-    margin: '0 40px', // Default spacing
+    margin: '0 1vw', // Default spacing
     [theme.breakpoints.down('sm')]: { // Adjust for small screens
-        margin: '0 10px', 
+        margin: '0 10px',
         fontSize: '14px',
     },
 }));
@@ -32,7 +32,7 @@ const LoginButton = styled(Button)(({ theme }) => ({
     fontWeight: '500',
     fontSize: '16px',
     padding: '8px 20px',
-    borderRadius: '50px',
+    borderRadius: '30px',
     marginRight: '10px',
     [theme.breakpoints.down('sm')]: {
         fontSize: '14px',
@@ -47,7 +47,7 @@ const SignUpButton = styled(Button)(({ theme }) => ({
     textTransform: 'none',
     fontSize: '16px',
     padding: '8px 20px',
-    borderRadius: '50px',
+    borderRadius: '30px',
     marginLeft: '10px',
     '&:hover': {
         background: 'linear-gradient(90deg, #5d4cb5, #6958c7)',
@@ -60,7 +60,7 @@ const SignUpButton = styled(Button)(({ theme }) => ({
 
 function Header() {
     const navigate = useNavigate();
-
+    const [drawerOpen, setDrawerOpen] = useState(false);
     const [solutionAnchorEl, setSolutionAnchorEl] = useState(null);
     const [newsAnchorEl, setNewsAnchorEl] = useState(null);
 
@@ -80,6 +80,10 @@ function Header() {
         setNewsAnchorEl(null);
     };
 
+    const toggleDrawer = (open) => () => {
+        setDrawerOpen(open);
+    };
+
     return (
         <StyledAppBar position="static">
             <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
@@ -88,16 +92,27 @@ function Header() {
                     <img src={logo} alt="CIP Logo" width="78" height="42" />
                 </IconButton>
 
-                {/* Centered Navigation Buttons */}
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: { xs: 'column', sm: 'row' },
-                    flexGrow: 1,
-                }}>
+                {/* Menu Icon for Small Screens */}
+                <IconButton
+                    edge="end"
+                    color="inherit"
+                    sx={{ display: { xs: 'flex', md: 'none' }, color: 'black' }}
+                    onClick={toggleDrawer(true)}
+                >
+                    <MenuIcon />
+                </IconButton>
+
+                {/* Centered Navigation Buttons (Hidden on Small Screens) */}
+                <Box
+                    sx={{
+                        display: { xs: 'none', md: 'flex' },
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexGrow: 1,
+                    }}
+                >
                     <StyledButton onClick={() => navigate('/company')}>Company</StyledButton>
-                    
+
                     <StyledButton onClick={handleSolutionMenuOpen} endIcon={<ExpandMoreIcon />}>
                         Solution
                     </StyledButton>
@@ -127,7 +142,13 @@ function Header() {
                 </Box>
 
                 {/* Login and Sign Up Buttons */}
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', mt: { xs: 2, sm: 0 } }}>
+                <Box
+                    sx={{
+                        display: { xs: 'none', md: 'flex' },
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}
+                >
                     <LoginButton variant="outlined" onClick={() => navigate('/login')}>
                         Log In
                     </LoginButton>
@@ -136,6 +157,46 @@ function Header() {
                     </SignUpButton>
                 </Box>
             </Toolbar>
+
+            {/* Drawer for Small Screens */}
+            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+                <Box
+                    sx={{ width: 250 }}
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                >
+                    <List>
+                        <ListItem button onClick={() => navigate('/company')}>
+                            <ListItemText primary="Company" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/cross-and-up-sale')}>
+                            <ListItemText primary="Cross And Up Sale" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/segmentation')}>
+                            <ListItemText primary="Segmentation" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/next-best-offer')}>
+                            <ListItemText primary="Next Best Offer" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/blog')}>
+                            <ListItemText primary="Blog" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/posts')}>
+                            <ListItemText primary="All Posts" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/contact')}>
+                            <ListItemText primary="Contact" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/login')}>
+                            <ListItemText primary="Log In" />
+                        </ListItem>
+                        <ListItem button onClick={() => navigate('/sign-up')}>
+                            <ListItemText primary="Sign Up" />
+                        </ListItem>
+                    </List>
+                </Box>
+            </Drawer>
         </StyledAppBar>
     );
 }

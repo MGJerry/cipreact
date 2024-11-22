@@ -1,7 +1,7 @@
 import { store } from "../actions/store";
 import { Provider } from "react-redux";
-import DCustomers from '../components/DCustomers';
-import { Container, createTheme, ThemeProvider } from "@mui/material";
+import SpreadsheetView from "../components/SpreadsheetView";
+import { createTheme, ThemeProvider } from "@mui/material";
 import CustomerHeader from "../components/CustomerHeader";
 
 const defaultTheme = createTheme();
@@ -11,9 +11,7 @@ const Report = () => {
     <ThemeProvider theme={defaultTheme}>
       <Provider store={store}>
         <CustomerHeader />
-        <Container maxWidth="lg">
-          <DCustomers />
-        </Container>
+        <SpreadsheetView />
       </Provider>
     </ThemeProvider>
   );

@@ -1,7 +1,7 @@
 // src/actions/api.js
 import axios from "axios";
 
-const baseUrl = "http://ec2-3-25-71-245.ap-southeast-2.compute.amazonaws.com:8080/api/";
+const baseUrl = "https://ec2-3-25-71-245.ap-southeast-2.compute.amazonaws.com:8081/api/";
 
 export default {
     dCustomer(url = baseUrl + "Customer/") {
