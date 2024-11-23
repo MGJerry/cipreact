@@ -7,7 +7,9 @@ import CrossAndUpSale from "./pages/CrossAndUpSale";
 import Segmentation from "./pages/Segmentation";
 import NextBestOffer from "./pages/NextBestOffer";
 import Contact from "./pages/Contact";
-// import Blog from "./pages/Blog";
+import Blog from "./pages/Blog";
+import BlogCategoryPage from "./pages/BlogCategoryPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ResetPassword from "./pages/ResetPassword";
@@ -24,23 +26,6 @@ import TestApiInteract from "./pages/TestApiInteract";
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-
     <Router>
       <Routes>
         {/* Test Page */}
@@ -53,7 +38,18 @@ function App() {
         <Route exact path="/next-best-offer" element={<NextBestOffer />} />
         <Route exact path="/contact" element={<Contact />} />
 
-        {/* <Route exact path="/blog" element={<Blog />} /> */}
+        <Route exact path="/blog" element={<Blog />} />
+        <Route exact path="/blog/:category" element={<BlogCategoryPage />} />
+        {/* Blog Post Page */}
+        <Route
+          exact
+          path="/blog/post"
+          element={
+            <BlogPostPage
+              postId={parseInt(new URLSearchParams(window.location.search).get("id") || "1")}
+            />
+          }
+        />
 
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/sign-up" element={<SignUp />} />

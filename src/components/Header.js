@@ -135,7 +135,7 @@ function Header() {
                         onClose={handleNewsMenuClose}
                     >
                         <MenuItem onClick={() => { navigate('/blog'); handleNewsMenuClose(); }}>Blog</MenuItem>
-                        <MenuItem onClick={() => { navigate('/posts'); handleNewsMenuClose(); }}>All Posts</MenuItem>
+                        <MenuItem onClick={() => { navigate('/blog'); handleNewsMenuClose(); }}>All Posts</MenuItem>
                     </Menu>
 
                     <StyledButton onClick={() => navigate('/contact')}>Contact</StyledButton>

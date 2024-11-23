@@ -1,6 +1,6 @@
 import { store } from "../actions/store";
 import { Provider } from "react-redux";
-import { Container, createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import CustomerHeader from "../components/CustomerHeader";
 import DashboardCharts from '../components/DashboardCharts';
 
