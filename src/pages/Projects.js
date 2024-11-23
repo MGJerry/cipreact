@@ -52,9 +52,7 @@ const StyledTableHeadCell = styled(TableCell)({
 });
 
 const projectList = [
-    { id: 51010, name: 'Nexa Ventures', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025' },
-    { id: 19384, name: 'Vertex Innovations', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025' },
-    { id: 86052, name: 'Lumina Labs', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025' },
+    { id: 51010, name: 'Phân tích khách hàng 360', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025' },
 ];
 
 function ProjectsPage() {

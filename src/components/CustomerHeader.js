@@ -8,7 +8,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 
 import Logo from '../images/logo.png'; // Update path if needed
-import UserAvatar from '../images/pexels-christina-morillo.png';
+import UserAvatar from '../images/linh.jfif';
 
 const StyledAppBar = styled(AppBar)({
     backgroundColor: '#f4f9fc',
@@ -77,8 +77,8 @@ function CustomerHeader() {
 
                 {/* Project Dropdown */}
                 <FormControl variant="outlined" size="small">
-                    <StyledSelect defaultValue="Nexa Ventures">
-                        <MenuItem value="Nexa Ventures">Nexa Ventures</MenuItem>
+                    <StyledSelect defaultValue="Phân tích khách hàng 360">
+                        <MenuItem value="Phân tích khách hàng 360">Phân tích khách hàng 360</MenuItem>
                         <MenuItem value="Vertex Innovations">Vertex Innovations</MenuItem>
                         <MenuItem value="Lumina Labs">Lumina Labs</MenuItem>
                     </StyledSelect>
@@ -97,7 +97,7 @@ function CustomerHeader() {
 
                 {/* User Info */}
                 <UserInfo>
-                    <StyledButton component={Link} to="/account" startIcon={<PersonIcon />}>Jane Doe</StyledButton>
+                    <StyledButton component={Link} to="/account" startIcon={<PersonIcon />}>Huỳnh Ngọc Linh</StyledButton>
                     <Avatar alt="Jane Doe" src={UserAvatar} component={Link} to="/account" />
                 </UserInfo>
             </Toolbar>

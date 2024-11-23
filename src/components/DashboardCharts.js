@@ -1,26 +1,15 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  Grid2,
-  Paper,
-  Checkbox,
-  List,
-  ListItem,
-  IconButton,
-} from "@mui/material";
+import React from "react";
+import { Box, Typography, Grid2, Paper } from "@mui/material";
 import { styled } from "@mui/system";
-import { BarChart, LineChart } from "@mui/x-charts";
-import { DndContext, closestCenter } from "@dnd-kit/core";
-import { useSortable, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
+import { BarChart, LineChart, PieChart } from "@mui/x-charts";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PaidIcon from "@mui/icons-material/Paid";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import { barChartData, lineChartData, taskData, trafficData } from "../data/dashboardData";
+
+import { barChartData, lineChartData, churnData } from "../data/dashboardData";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2.5),
@@ -46,71 +35,7 @@ const StatBox = styled(Paper)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-const SortableTask = ({ id, task, onToggle }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
-  return (
-    <ListItem
-      ref={setNodeRef}
-      style={style}
-      secondaryAction={
-        <IconButton {...attributes} {...listeners} edge="end">
-          <DragIndicatorIcon />
-        </IconButton>
-      }
-    >
-      <Checkbox
-        checked={task.completed}
-        onChange={() => onToggle(id)}
-        sx={{
-          "&.Mui-checked": {
-            color: "#7a3ffd",
-          },
-        }}
-      />
-      <Typography
-        variant="body1"
-        sx={{
-          textDecoration: task.completed ? "line-through" : "none",
-          color: task.completed ? "#aaa" : "#333",
-        }}
-      >
-        {task.name}
-      </Typography>
-    </ListItem>
-  );
-};
-
 export default function DashboardCharts() {
-  const [tasks, setTasks] = useState(
-    taskData.map((task, index) => ({ ...task, id: index.toString() }))
-  );
-
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-    if (active.id !== over.id) {
-      const oldIndex = tasks.findIndex((task) => task.id === active.id);
-      const newIndex = tasks.findIndex((task) => task.id === over.id);
-
-      const updatedTasks = [...tasks];
-      const [removed] = updatedTasks.splice(oldIndex, 1);
-      updatedTasks.splice(newIndex, 0, removed);
-      setTasks(updatedTasks);
-    }
-  };
-
-  const toggleTaskCompletion = (id) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
-
   const chartStyles = {
     width: "80%",
     height: "70%",
@@ -120,8 +45,8 @@ export default function DashboardCharts() {
     <Box sx={{ padding: 3 }}>
       <Grid2 container rowSpacing={4} columnSpacing={3}>
         {/* Main Grid2 layout */}
-        <Grid2 size={{ xs: 12, md: 5 }}>
-          <Grid2 container rowSpacing={4} spacing={3}>
+        <Grid2 size={{ xs: 12, sm: 6, md: 5 }}>
+          <Grid2 container rowSpacing={6} spacing={3}>
             {/* Total Revenue */}
             <Grid2 size={12} sx={{ height: "400px" }}>
               <StyledPaper>
@@ -174,115 +99,63 @@ export default function DashboardCharts() {
           </Grid2>
         </Grid2>
 
-        <Grid2 size={{ xs: 12, md: 4 }}>
-          <Grid2 container rowSpacing={4} spacing={3}>
-            {/* Daily Traffic */}
+        <Grid2 size={{ xs: 12, sm: 6, md: 4 }}>
+          <Grid2 container rowSpacing={6} spacing={3}>
+            {/* Customer Churn */} 
             <Grid2 size={12} sx={{ height: "400px" }}>
               <StyledPaper>
-                <Typography variant="subtitle1">Daily Traffic</Typography>
-                <Typography variant="h4" color="#7a3ffd">
-                  2,579 Visitors
+                <Typography variant="h6" gutterBottom>
+                  Customer Churn
                 </Typography>
-                <Typography variant="caption" color="green">
-                  +2.45%
+                <Typography variant="h4" color="#FF6F61" sx={{ marginBottom: "16px" }}>
+                  6%
                 </Typography>
                 <BarChart
-                  dataset={trafficData}
-                  series={[{ dataKey: "visitors", color: "#7a3ffd" }]}
-                  xAxis={[{ dataKey: "hour", scaleType: "band" }]}
+                  dataset={churnData}
+                  series={[
+                    { dataKey: "churn", stack: 'customer', label: "Churn", color: "#ED948C" },
+                    { dataKey: "expansion", stack: 'customer', label: "Expansion", color: "#3D3088" },
+                  ]}
+                  xAxis={[{ dataKey: "month", scaleType: "band" }]}
                   leftAxis={null}
-                  sx={chartStyles}
+                  bottomAxis={null}
+                  slotProps={{
+                    legend: {
+                      position: { vertical: "bottom", horizontal: "middle" },
+                    },
+                  }}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                  }}
                 />
               </StyledPaper>
             </Grid2>
+
 
             {/* Today's Sales */}
             <Grid2 size={12} sx={{ height: "400px" }}>
               <StyledPaper>
                 <Typography variant="h6" gutterBottom>
-                  Today's Sales
+                  Customer Demographic
                 </Typography>
-                <Typography variant="caption" color="text.secondary" gutterBottom>
-                  Sales Summary
-                </Typography>
-                {/* Sales Boxes */}
-                <Box display="flex" justifyContent="flex-end" gap="20px" mt={2} width="100%">
-                  {/* Total Sales */}
-                  <Box
-                    sx={{
-                      backgroundColor: "#f4f9fc",
-                      borderRadius: "16px",
-                      padding: "20px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "40%",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        backgroundColor: "#5363df",
-                        borderRadius: "50%",
-                        height: "40px",
-                        width: "40px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      <SignalCellularAltIcon sx={{ color: "white" }} />
-                    </Box>
-                    <Typography variant="h4">$1k</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Total Sales
-                    </Typography>
-                    <Typography variant="caption" color="blue">
-                      +8% from yesterday
-                    </Typography>
-                  </Box>
-                  {/* Total Orders */}
-                  <Box
-                    sx={{
-                      backgroundColor: "#f4f9fc",
-                      borderRadius: "16px",
-                      padding: "20px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "40%",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        backgroundColor: "#36b3ff",
-                        borderRadius: "50%",
-                        height: "40px",
-                        width: "40px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      <TextSnippetIcon sx={{ color: "white" }} />
-                    </Box>
-                    <Typography variant="h4">300</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Total Order
-                    </Typography>
-                    <Typography variant="caption" color="blue">
-                      +5% from yesterday
-                    </Typography>
-                  </Box>
-                </Box>
+                <PieChart
+                  series={[
+                    {
+                      data: [
+                        { id: 0, value: 46.6, label: 'Nam', color: "#061EBD" },
+                        { id: 1, value: 53.4, label: 'Nữ', color: "#AF02B8" },
+                      ],
+                    },
+                  ]}
+                />
               </StyledPaper>
             </Grid2>
           </Grid2>
         </Grid2>
 
-        <Grid2 size={{ xs: 12, md: 3 }}>
-          <Grid2 container rowSpacing={4} spacing={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 3 }}>
+          <Grid2 container rowSpacing={1} spacing={3}>
             {/* Stat Boxes */}
             <Grid2 size={12}>
               <StatBox>
@@ -302,7 +175,7 @@ export default function DashboardCharts() {
                 <Box>
                   <Typography variant="subtitle1">Earnings</Typography>
                   <Typography variant="h4" color="#7a3ffd">
-                    $350.4
+                    ₫3.572.300
                   </Typography>
                 </Box>
               </StatBox>
@@ -325,7 +198,7 @@ export default function DashboardCharts() {
                 <Box>
                   <Typography variant="subtitle1">Spend This Month</Typography>
                   <Typography variant="h4" color="#7a3ffd">
-                    $642.39
+                    ₫2.213.900
                   </Typography>
                 </Box>
               </StatBox>
@@ -348,7 +221,7 @@ export default function DashboardCharts() {
                 <Box>
                   <Typography variant="subtitle1">Total Sales</Typography>
                   <Typography variant="h4" color="#7a3ffd">
-                    $574.34
+                    ₫5.572.300
                   </Typography>
                   <Typography variant="caption" color="green">
                     +23% since last month
@@ -356,22 +229,103 @@ export default function DashboardCharts() {
                 </Box>
               </StatBox>
             </Grid2>
+            <Grid2 size={12}>
+              <StatBox>
+                <Box
+                  sx={{
+                    backgroundColor: "#f4f7fe",
+                    borderRadius: "50%",
+                    height: "50px",
+                    width: "50px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <TrendingUpIcon sx={{ color: "#7a3ffd", fontSize: "30px" }} />
+                </Box>
+                <Box>
+                  <Typography variant="subtitle1">Growth Rates</Typography>
+                  <Typography variant="h4" color="#7a3ffd">
+                    8.29%
+                  </Typography>
+                  <Typography variant="caption" color="green">
+                    +1.3% since last month
+                  </Typography>
+                </Box>
+              </StatBox>
+            </Grid2>
 
-            {/* Task List */}
+            {/* Today's Sales */}
             <Grid2 size={12}>
               <StyledPaper>
                 <Typography variant="h6" gutterBottom>
-                  Tasks
+                  Today's Sales
                 </Typography>
-                <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                  <SortableContext items={tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
-                    <List>
-                      {tasks.map((task) => (
-                        <SortableTask key={task.id} id={task.id} task={task} onToggle={toggleTaskCompletion} />
-                      ))}
-                    </List>
-                  </SortableContext>
-                </DndContext>
+                <Box display="flex" flexDirection="column" gap="20px" mt={2} width="100%">
+                  {/* Total Sales */}
+                  <StatBox
+                    sx={{
+                      backgroundColor: "#f4f9fc",
+                      borderRadius: "16px",
+                      padding: "20px",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        backgroundColor: "#5363df",
+                        borderRadius: "50%",
+                        height: "50px",
+                        width: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <SignalCellularAltIcon sx={{ color: "white", fontSize: "30px" }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1">Total Sales</Typography>
+                      <Typography variant="h4" color="text.secondary">
+                        ₫798.100
+                      </Typography>
+                      <Typography variant="caption" color="blue">
+                        +8% from yesterday
+                      </Typography>
+                    </Box>
+                  </StatBox>
+                  {/* Total Orders */}
+                  <StatBox
+                    sx={{
+                      backgroundColor: "#f4f9fc",
+                      borderRadius: "16px",
+                      padding: "20px",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        backgroundColor: "#36b3ff",
+                        borderRadius: "50%",
+                        height: "50px",
+                        width: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TextSnippetIcon sx={{ color: "white", fontSize: "30px" }} />
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1">Total Orders</Typography>
+                      <Typography variant="h4" color="text.secondary">
+                        137
+                      </Typography>
+                      <Typography variant="caption" color="blue">
+                        +8% from yesterday
+                      </Typography>
+                    </Box>
+                  </StatBox>
+                </Box>
               </StyledPaper>
             </Grid2>
           </Grid2>

@@ -48,7 +48,7 @@ const StyledTableHeadCell = styled(TableCell)({
 });
 
 const projectList = [
-    { id: 51010, name: 'Nexa Ventures', owner: 'Elliot Mercer', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025', description: 'Nexa Ventures is an innovative ...' },
+    { id: 51010, name: 'Phân tích khách hàng 360', owner: 'Elliot Mercer', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025', description: 'Phân tích khách hàng 360' },
     { id: 19384, name: 'Vertex Innovations', owner: 'Elliot Mercer', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025', description: 'Vertex Innovations is an innovative ...' },
     { id: 86052, name: 'Lumina Labs', owner: 'Elliot Mercer', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025', description: 'Lumina Labs is an innovative ...' },
     { id: 42719, name: 'OrbitEdge', owner: 'Elliot Mercer', status: 'Completed', startDate: '12/04/2024', endDate: '12/10/2025', description: 'OrbitEdge is an innovative ...' },
