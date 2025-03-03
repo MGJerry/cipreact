@@ -6,24 +6,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../images/logo.png';
 
-// Google Analytics tag
-useEffect(() => {
-    const script1 = document.createElement('script');
-    script1.async = true;
-    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-HB7SDJTC2F';
-
-    const script2 = document.createElement('script');
-    script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HB7SDJTC2F');
-    `;
-
-    document.head.appendChild(script1);
-    document.head.appendChild(script2);
-}, []);
-
 // Custom styling for the AppBar and Buttons
 const StyledAppBar = styled(AppBar)({
     backgroundColor: '#f7faff',
@@ -101,6 +83,24 @@ function Header() {
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
     };
+
+    // Google Analytics tag
+    useEffect(() => {
+        const script1 = document.createElement('script');
+        script1.async = true;
+        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-HB7SDJTC2F';
+
+        const script2 = document.createElement('script');
+        script2.innerHTML = `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-HB7SDJTC2F');
+        `;
+
+        document.head.appendChild(script1);
+        document.head.appendChild(script2);
+    }, []);
 
     return (
         <StyledAppBar position="static">
